@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import PlayingField from "./components/PlayingField/PlayingField";
 import {Cell} from "./types";
+import ResetButton from "./components/ResetButton/ResetButton";
 
 const createPlayingField = () => {
   const playingCells: Cell[] = [];
@@ -28,6 +29,7 @@ function App() {
       if(cell.id === id) {
         cell.clicked = true;
       }
+      return cell;
     });
     setPlayingCells(playingCellsCopy);
   }
@@ -36,9 +38,14 @@ function App() {
     return <PlayingField playingCells={playingCells} openCell={openCell}/>;
   }
 
+  const resetGame = () => {
+    setPlayingCells(createPlayingField);
+  }
+
   return (
     <div className="App">
       {createField()}
+      <ResetButton onClickHandler={resetGame}/>
     </div>
   );
 }

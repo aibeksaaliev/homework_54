@@ -2,12 +2,12 @@ import React from 'react';
 import './PlayingCell.css';
 import {Cell} from "../../types";
 
-interface Props {
+interface PlayingCellProps {
   cell: Cell;
   onClickHandler: React.MouseEventHandler;
 }
 
-const PlayingCell: React.FC<Props> = (props) => {
+const PlayingCell: React.FC<PlayingCellProps> = (props) => {
   if (props.cell.hasDiamond) {
     return (
       <div className="cell" onClick={props.onClickHandler}>
