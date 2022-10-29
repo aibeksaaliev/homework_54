@@ -1,0 +1,12 @@
+.playing_field {
+    width: 560px;
+    height: 560px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background: firebrick;
+    border-radius: 10px;
+}
