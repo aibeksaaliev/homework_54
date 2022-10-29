@@ -1,4 +1,5 @@
 import React from 'react';
+import './ResetButton.css';
 
 interface ResetButtonProps {
   onClickHandler: React.MouseEventHandler;
