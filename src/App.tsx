@@ -3,6 +3,7 @@ import './App.css';
 import PlayingField from "./components/PlayingField/PlayingField";
 import {Cell} from "./types";
 import ResetButton from "./components/ResetButton/ResetButton";
+import AttemptsCounter from "./components/AttemptsCounter/AttemptsCounter";
 
 const createPlayingField = () => {
   const playingCells: Cell[] = [];
@@ -22,6 +23,7 @@ const createPlayingField = () => {
 
 function App() {
   const [playingCells, setPlayingCells] = useState(createPlayingField());
+  const [attemptCounter, setCounter] = useState({counter:0});
 
   const openCell = (id: number) => {
     const playingCellsCopy = [...playingCells];
@@ -32,6 +34,21 @@ function App() {
       return cell;
     });
     setPlayingCells(playingCellsCopy);
+    increaseCounter();
+  }
+
+  const increaseCounter = () => {
+    const playingCellsCopy = [...playingCells];
+    const counterCopy = {...attemptCounter};
+    counterCopy.counter = 0;
+
+    playingCellsCopy.forEach(cell => {
+      if (cell.clicked) {
+        counterCopy.counter++;
+      }
+    });
+
+    setCounter(counterCopy);
   }
 
   const createField = () => {
@@ -40,11 +57,15 @@ function App() {
 
   const resetGame = () => {
     setPlayingCells(createPlayingField);
+    const attemptCounterCopy = {...attemptCounter};
+    attemptCounterCopy.counter = 0;
+    setCounter(attemptCounterCopy);
   }
 
   return (
     <div className="App">
       {createField()}
+      <AttemptsCounter counter={attemptCounter.counter}/>
       <ResetButton onClickHandler={resetGame}/>
     </div>
   );
