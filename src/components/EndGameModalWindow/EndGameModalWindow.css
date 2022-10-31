@@ -1,0 +1,27 @@
+.game_active {
+    display: none;
+}
+
+.game_finished {
+    padding-top: 620px;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 150;
+}
+
+.game_finished span {
+    display: block;
+    margin: 0 auto;
+    width: 130px;
+    height: 30px;
+    line-height: 30px;
+    text-transform: uppercase;
+    background: firebrick;
+    color: #fff;
+    border-radius: 8px;
+}

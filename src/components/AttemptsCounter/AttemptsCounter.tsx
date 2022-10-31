@@ -7,8 +7,8 @@ interface AttemptsCounterProps {
 
 const AttemptsCounter: React.FC<AttemptsCounterProps> = (props) => {
   return (
-    <div>
-      <span>{props.counter} attempts.</span>
+    <div className="counter">
+      <span>{props.counter} attempts</span>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 .reset_btn {
     margin-top: 20px;
-    width: 80px;
+    width: 130px;
     height: 30px;
     text-transform: uppercase;
     font-weight: bold;
-    background: #ccc;
+    background: #fff;
     border: 1px solid firebrick;
-    border-radius: 5px;
+    border-radius: 8px;
+    font-size: 15px;
 }

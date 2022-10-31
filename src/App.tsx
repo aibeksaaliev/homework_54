@@ -4,6 +4,7 @@ import PlayingField from "./components/PlayingField/PlayingField";
 import {Cell} from "./types";
 import ResetButton from "./components/ResetButton/ResetButton";
 import AttemptsCounter from "./components/AttemptsCounter/AttemptsCounter";
+import EndGameModalWindow from "./components/EndGameModalWindow/EndGameModalWindow";
 
 const createPlayingField = () => {
   const playingCells: Cell[] = [];
@@ -24,6 +25,7 @@ const createPlayingField = () => {
 function App() {
   const [playingCells, setPlayingCells] = useState(createPlayingField());
   const [attemptCounter, setCounter] = useState({counter:0});
+  const [statusGame, setStatusGame] = useState("active");
 
   const openCell = (id: number) => {
     const playingCellsCopy = [...playingCells];
@@ -35,11 +37,13 @@ function App() {
     });
     setPlayingCells(playingCellsCopy);
     increaseCounter();
+    getStatusGame();
   }
 
   const increaseCounter = () => {
     const playingCellsCopy = [...playingCells];
     const counterCopy = {...attemptCounter};
+
     counterCopy.counter = 0;
 
     playingCellsCopy.forEach(cell => {
@@ -51,6 +55,20 @@ function App() {
     setCounter(counterCopy);
   }
 
+  const getStatusGame = () => {
+    const playingCellsCopy = [...playingCells];
+    let statusGameCopy = statusGame;
+
+    playingCellsCopy.forEach(cell => {
+      if (cell.clicked && cell.hasDiamond) {
+        statusGameCopy = "finished";
+      }
+    });
+
+    setPlayingCells(playingCellsCopy);
+    setStatusGame(statusGameCopy);
+  }
+
   const createField = () => {
     return <PlayingField playingCells={playingCells} openCell={openCell}/>;
   }
@@ -58,15 +76,19 @@ function App() {
   const resetGame = () => {
     setPlayingCells(createPlayingField);
     const attemptCounterCopy = {...attemptCounter};
+    let statusGameCopy = statusGame;
+    statusGameCopy = "active";
     attemptCounterCopy.counter = 0;
     setCounter(attemptCounterCopy);
+    setStatusGame(statusGameCopy);
   }
 
   return (
     <div className="App">
       {createField()}
       <AttemptsCounter counter={attemptCounter.counter}/>
-      <ResetButton onClickHandler={resetGame}/>
+      <ResetButton onClickHandler={resetGame} name={"Reset Game"}/>
+      <EndGameModalWindow status={statusGame} startNewGame={resetGame}/>
     </div>
   );
 }
