@@ -9,3 +9,12 @@
     border-radius: 8px;
     font-size: 15px;
 }
+
+.reset_btn:hover {
+    background: firebrick;
+    color: #fff;
+}
+
+.reset_btn:active {
+    color: #000;
+}

@@ -13,7 +13,7 @@ const PlayingCell: React.FC<PlayingCellProps> = (props) => {
       <div className="cell" onClick={props.onClickHandler}>
         <div className={props.cell.clicked? "diamond_visible" : "playing_cell"}>
         </div>
-        <img className="diamond" src="https://img.icons8.com/stickers/344/sparkling-diamond.png" alt="Diamond"/>
+        <img className="diamond pulse" src="https://img.icons8.com/stickers/344/sparkling-diamond.png" alt="Diamond"/>
       </div>
     );
   } else {
